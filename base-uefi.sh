@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ln -sf /usr/share/zoneinfo/Europe/Zurich /etc/localtime
+ln -sf /usr/share/zoneinfo/Australia/Melbourne /etc/localtime
 hwclock --systohc
 sed -i '153s/.//' /etc/locale.gen
 locale-gen
@@ -10,12 +10,12 @@ echo "hydra" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 hydra.localdomain hydra" >> /etc/hosts
-echo root:password | chpasswd
+echo root:drfred | chpasswd
 
 # You can add xorg to the installation packages, I usually add it at the DE or WM install script
 # You can remove the tlp package if you are installing on a desktop or vm
 
-pacman -S grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion openssh rsync reflector acpi acpi_call nss-mdns acpid os-prober ntfs-3g terminus-font
+pacman -S grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils alsa-utils pulseaudio bash-completion openssh rsync reflector acpi acpi_call nss-mdns acpid os-prober ntfs-3g 
 
 # pacman -S --noconfirm xf86-video-amdgpu
 pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
@@ -33,7 +33,7 @@ systemctl enable fstrim.timer
 systemctl enable acpid
 
 useradd -m bknight2k
-echo bknight2k:password | chpasswd
+echo bknight2k:drfred | chpasswd
 usermod -aG wheel bknight2k
 
 echo "bknight2k ALL=(ALL) ALL" >> /etc/sudoers.d/bknight2k

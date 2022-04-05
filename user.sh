@@ -1,15 +1,14 @@
 #!/bin/bash
 set -e
 
-git clone https://aur.archlinux.org/paru-bin
-cd paru-bin/
-makepkg -si --noconfirm
-cd
-rm -rf paru-bin
-
+#git clone https://aur.archlinux.org/paru-bin
+#cd paru-bin/
+#makepkg -si --noconfirm
+#cd
+#rm -rf paru-bin
 
 sudo pacman -S --noconfirm --needed reflector
-sudo reflector -c archlinux -a 12 --sort rate --save /etc/pacman.d/mirrorlist --verbose
+sudo reflector -c AU -a 12 --sort rate --save /etc/pacman.d/mirrorlist --verbose
 sudo pacman -Syu
 
 sudo pacman -S --noconfirm --needed xorg-server xorg-apps xorg-xinit xorg-twm xterm
@@ -33,11 +32,11 @@ sudo pacman -S --noconfirm --needed alsa-utils alsa-plugins alsa-lib alsa-firmwa
 sudo pacman -S --noconfirm --needed gst-plugins-good gst-plugins-bad gst-plugins-base gst-plugins-ugly gstreamer
 
 # install font essantials
-sudo pacman -S --noconfirm cario fontconfig freetype2
+sudo pacman -S --noconfirm fontconfig freetype2
 
 # Install fonts
-sudo pacman -S ttf-dejavu ttf-liberation ttf-anonymous-pro ttf-ubuntu-family terminus-font ttf-font-awesome
-sudo paru -S --noconfirm ttf-ms-fonts noto-fonts ttf-roboto ttf-inconsolata ttf-ubuntu-family
+sudo pacman -S ttf-dejavu ttf-liberation ttf-anonymous-pro terminus-font ttf-font-awesome
+paru -S --noconfirm ttf-ms-fonts noto-fonts ttf-roboto ttf-inconsolata
 
 # Install admin tools
 paru -S --noconfirm pamac-aur
@@ -58,13 +57,14 @@ chsh --shell /bin/zsh bknight2k
 curl -sS https://starship.rs/install.sh | sh
 
 # wallpapers
-git clone --recursive https://github.com/bknightInfo/wallpapers ~/.local/share/
+git clone --recursive https://github.com/bknightInfo/wallpapers ~/.local/share/wallpapers
 
 # Dotfiles
 git clone --recursive https://github.com/bknightInfo/dotfiles ~/.dotfiles
 
-echo "change shell"
-chsh --shell /bin/zsh bknight2k
-curl -sS https://starship.rs/install.sh | sh
+#alernative WM
+vararity
+paru -S picom-ibhagwan-git feh variety polybar conky dmenu leftwm leftwm-theme-git
+
 
 sudo systemctl enable --now zramd
