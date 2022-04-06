@@ -1,24 +1,24 @@
 #!/bin/bash
 set -e
 
-#git clone https://aur.archlinux.org/paru-bin
-#cd paru-bin/
-#makepkg -si --noconfirm
-#cd
-#rm -rf paru-bin
+git clone https://aur.archlinux.org/paru-bin
+cd paru-bin/
+makepkg -si --noconfirm
+cd
+rm -rf paru-bin
 
 sudo pacman -S --noconfirm --needed reflector
 sudo reflector -c AU -a 12 --sort rate --save /etc/pacman.d/mirrorlist --verbose
 sudo pacman -Syu
 
-sudo pacman -S --noconfirm --needed xorg-server xorg-apps xorg-xinit xorg-twm xterm
+sudo pacman -S --noconfirm --needed xorg-server xorg-apps xorg-xinit xorg-twm 
 sudo pacman -S --noconfirm --needed nvidia nvidia-utils nvidia-settings
 
 # install x essentials
 sudo pacman -S --noconfirm xorg-server xorg-apps xorg-xinit xorg-fonts-misc dbus xsel acpi xbindkeys
 
 # install only selected xfce goodies
-sudo pacman -S --noconfirm xfce4 xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-pulseaudio-plugin xfce4-netload-plugin xfce4-mpc-plugin xfce4-datetime-plugin xfce4-cpufreq-plugin thunar-media-tags-plugin thunar-archive-plugin plank
+sudo pacman -S --noconfirm xfce4 xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-pulseaudio-plugin xfce4-netload-plugin xfce4-mpc-plugin xfce4-datetime-plugin xfce4-cpufreq-plugin thunar-media-tags-plugin thunar-archive-plugin
 
 # install windows manager
 sudo pacman -S --noconfirm dunst arc-gtk-theme arc-icon-theme papirus-icon-theme
@@ -62,9 +62,6 @@ git clone --recursive https://github.com/bknightInfo/wallpapers ~/.local/share/w
 # Dotfiles
 git clone --recursive https://github.com/bknightInfo/dotfiles ~/.dotfiles
 
-#alernative WM
-vararity
-paru -S picom-ibhagwan-git feh variety polybar conky dmenu leftwm leftwm-theme-git
-
 
 sudo systemctl enable --now zramd
+sudo systemctl enable lightdm

@@ -5,12 +5,11 @@ hwclock --systohc
 sed -i '153s/.//' /etc/locale.gen
 locale-gen
 echo "LANG=en_AU.UTF-8" >> /etc/locale.conf
-#echo "KEYMAP=de_CH-latin1" >> /etc/vconsole.conf
 echo "hydra" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 hydra.localdomain hydra" >> /etc/hosts
-echo root:drfred | chpasswd
+echo root:password | chpasswd
 
 # You can add xorg to the installation packages, I usually add it at the DE or WM install script
 # You can remove the tlp package if you are installing on a desktop or vm
@@ -32,9 +31,9 @@ systemctl enable reflector.timer
 systemctl enable fstrim.timer
 systemctl enable acpid
 
-useradd -m bknight2k
-echo bknight2k:drfred | chpasswd
-usermod -aG wheel bknight2k
+useradd -m user
+echo user:password | chpasswd
+usermod -aG wheel user
 
 echo "bknight2k ALL=(ALL) ALL" >> /etc/sudoers.d/bknight2k
 

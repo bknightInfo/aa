@@ -26,5 +26,6 @@ mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@srv /dev
 mount -o subvol=@var /dev/nvme0n1p2 /mnt/var
 mount /dev/nvme0n1p1 /mnt/boot
 pacstrap /mnt base btrfs-progs git amd-ucode linux linux-firmware nano vim
-
-lsblk
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+cat /etc/fstab
