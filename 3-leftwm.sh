@@ -69,15 +69,28 @@ paru -S --noconfirm  visual-studio-code-bin fnm-bin sublime-text-4 dmenu feh fir
 
 paru -S --noconfirm  adobe-source-sans-fonts awesome-terminal-fonts noto-fonts ttf-dejavu ttf-droid ttf-hack ttf-roboto ttf-roboto-mono ttf-ubuntu-font-family
 
-echo "change shell"
-chsh --shell /bin/zsh bknight2k
-curl -sS https://starship.rs/install.sh | sh
+
+cd
 
 # wallpapers
 git clone --recursive https://github.com/bknightInfo/wallpapers ~/.local/share/wallpapers
 
 # Dotfiles
 git clone --recursive https://github.com/bknightInfo/dotfiles ~/.dotfiles
+cd ~/.dotfiles
+
+stow alacritty
+stow autostart
+stow leftwm
+stow sxhkd
+stow thunar
+stow variety
+stow vscode
+stow zsh
+
+echo "change shell"
+chsh --shell /bin/zsh bknight2k
+curl -sS https://starship.rs/install.sh | sh
 
 
 sudo systemctl enable --now zramd
