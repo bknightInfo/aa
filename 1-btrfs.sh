@@ -1,9 +1,11 @@
 #!/bin/bash
 
 mkfs.fat -F32 /dev/nvme0n1p1
-mkfs.btrfs -f /dev/nvme0n1p2
+mkswap /dev/nvme0n1p2
+swapon /dev/nvme0n1p2
+mkfs.btrfs -f /dev/nvme0n1p3
 
-mount /dev/nvme0n1p2 /mnt
+mount /dev/nvme0n1p3 /mnt
 
 cd /mnt
 
@@ -17,15 +19,16 @@ btrfs subvolume create @srv
 cd
 umount /mnt
 
-mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@ /dev/nvme0n1p2 /mnt
+mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@ /dev/nvme0n1p3 /mnt
 mkdir -p /mnt/{boot,home,var,opt,tmp,srv}
-mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@home /dev/nvme0n1p2 /mnt/home
-mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@opt /dev/nvme0n1p2 /mnt/opt
-mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@tmp /dev/nvme0n1p2 /mnt/tmp
-mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@srv /dev/nvme0n1p2 /mnt/srv
-mount -o subvol=@var /dev/nvme0n1p2 /mnt/var
+mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@home /dev/nvme0n1p3 /mnt/home
+mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@opt /dev/nvme0n1p3 /mnt/opt
+mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@tmp /dev/nvme0n1p3 /mnt/tmp
+mount -o noatime,compress=zstd,ssd,discard=async,space_cache=v2,subvol=@srv /dev/nvme0n1p3 /mnt/srv
+mount -o subvol=@var /dev/nvme0n1p3 /mnt/var
 mount /dev/nvme0n1p1 /mnt/boot
 pacstrap /mnt base btrfs-progs git amd-ucode linux linux-firmware nano vim
 genfstab -U /mnt >> /mnt/etc/fstab
+cd
+cp -r /aa /mnt
 arch-chroot /mnt
-cat /etc/fstab

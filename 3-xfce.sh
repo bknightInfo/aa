@@ -1,14 +1,14 @@
 #!/bin/bash
 set -e
 
-git clone https://aur.archlinux.org/paru-bin
-cd paru-bin/
-makepkg -si --noconfirm
-cd
-rm -rf paru-bin
+#git clone https://aur.archlinux.org/paru-bin
+#cd paru-bin/
+#makepkg -si --noconfirm
+#cd
+#rm -rf paru-bin
 
-sudo pacman -S --noconfirm --needed reflector
-sudo reflector -c AU -a 12 --sort rate --save /etc/pacman.d/mirrorlist --verbose
+#sudo pacman -S --noconfirm --needed reflector
+#sudo reflector -c AU -a 12 --sort rate --save /etc/pacman.d/mirrorlist --verbose
 sudo pacman -Syu
 
 sudo pacman -S --noconfirm --needed xorg-server xorg-apps xorg-xinit xorg-twm 
