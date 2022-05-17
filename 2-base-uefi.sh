@@ -12,7 +12,7 @@ echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 hydra.localdomain hydra" >> /etc/hosts
 echo root:${PASSWORD} | chpasswd
 
-pacman -S grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils alsa-utils pipewire pipewire-media-session pipewire-alsa pipewire-jack pipewire-zeroconf pipewire-pulse pavucontrol qjackctl openssh rsync reflector acpi acpi_call nss-mdns acpid os-prober ntfs-3g 
+pacman -S grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils alsa-utils pipewire pipewire-media-session pipewire-alsa pipewire-jack pipewire-zeroconf pipewire-pulse pavucontrol openssh rsync reflector acpi acpi_call nss-mdns acpid os-prober ntfs-3g 
 
 # pacman -S --noconfirm xf86-video-amdgpu
 pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
